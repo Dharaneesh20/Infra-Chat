@@ -1,33 +1,65 @@
 .input-box-container {
-  border-top: 1px solid #e2e8f0;
-  background: white;
-  padding: 16px 20px;
+  border-top: 1px solid rgba(139, 92, 246, 0.1);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(249, 250, 251, 0.95) 100%);
+  backdrop-filter: blur(10px);
+  padding: 18px 24px;
+  animation: slideUpInput 0.4s ease-out;
+}
+
+@keyframes slideUpInput {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .quick-prompts {
   display: flex;
   gap: 8px;
-  margin-bottom: 12px;
+  margin-bottom: 14px;
   flex-wrap: wrap;
+  animation: fadeInPrompts 0.6s ease-out 0.2s both;
+}
+
+@keyframes fadeInPrompts {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .quick-prompt-btn {
-  background: #f1f5f9;
-  border: 1px solid #e2e8f0;
+  background: white;
+  border: 1px solid rgba(139, 92, 246, 0.15);
   border-radius: 20px;
-  padding: 6px 14px;
+  padding: 8px 16px;
   font-size: 0.85rem;
-  color: #475569;
+  color: #6b7280;
   cursor: pointer;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   white-space: nowrap;
+  box-shadow: 0 2px 6px rgba(139, 92, 246, 0.05);
+  font-weight: 500;
 }
 
 .quick-prompt-btn:hover:not(:disabled) {
-  background: #667eea;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   color: white;
-  border-color: #667eea;
-  transform: translateY(-1px);
+  border-color: transparent;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 16px rgba(99, 102, 241, 0.3);
+}
+
+.quick-prompt-btn:active:not(:disabled) {
+  transform: translateY(0) scale(1);
 }
 
 .quick-prompt-btn:disabled {
@@ -45,54 +77,80 @@
 
 .input-textarea {
   flex: 1;
-  border: 2px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 12px 16px;
-  font-size: 1rem;
+  border: 2px solid rgba(139, 92, 246, 0.15);
+  border-radius: 16px;
+  padding: 14px 18px;
+  font-size: 0.95rem;
   font-family: inherit;
   resize: none;
   max-height: 150px;
   overflow-y: auto;
-  transition: border-color 0.2s;
+  transition: all 0.3s ease;
   line-height: 1.5;
+  background: white;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.05);
 }
 
 .input-textarea:focus {
   outline: none;
-  border-color: #667eea;
+  border-color: #8b5cf6;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.15), 0 0 0 4px rgba(139, 92, 246, 0.05);
+  transform: translateY(-1px);
 }
 
 .input-textarea:disabled {
-  background: #f8fafc;
+  background: #f9fafb;
   cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .input-textarea::placeholder {
-  color: #94a3b8;
+  color: #9ca3af;
 }
 
 .send-button {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
   border: none;
-  border-radius: 12px;
-  width: 48px;
-  height: 48px;
+  border-radius: 14px;
+  width: 52px;
+  height: 52px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   color: white;
-  transition: all 0.2s;
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
   flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+  position: relative;
+  overflow: hidden;
+}
+
+.send-button::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.5s, height 0.5s;
+}
+
+.send-button:hover:not(:disabled)::before {
+  width: 300px;
+  height: 300px;
 }
 
 .send-button:hover:not(:disabled) {
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 24px rgba(99, 102, 241, 0.4);
 }
 
 .send-button:active:not(:disabled) {
-  transform: translateY(0);
+  transform: translateY(-1px) scale(1);
 }
 
 .send-button:disabled {
