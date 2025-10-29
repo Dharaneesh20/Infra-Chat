@@ -27,8 +27,8 @@ wheels/
 instance/
 .webassets-cache
 
-# ChromaDB
-backend/chroma_db/
+# FAISS Vector Index
+backend/faiss_index/
 
 # Environment variables
 .env

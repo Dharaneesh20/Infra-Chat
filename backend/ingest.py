@@ -1,6 +1,6 @@
 """
 Document Ingestion Script
-This script runs once to load all documentation into ChromaDB.
+This script runs once to load all documentation into FAISS.
 It splits documents into chunks, creates embeddings, and stores them for RAG.
 """
 
@@ -9,7 +9,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import FAISS
 from langchain.schema import Document
 
 # Load environment variables
@@ -17,7 +17,7 @@ load_dotenv()
 
 # Configuration
 DOCS_DIR = Path("./docs")
-CHROMA_DB_PATH = "./chroma_db"
+FAISS_INDEX_PATH = "./faiss_index"
 CHUNK_SIZE = 1000
 CHUNK_OVERLAP = 200
 
@@ -90,13 +90,13 @@ def split_documents(documents):
 
 def create_vector_store(chunks):
     """
-    Create embeddings and store in ChromaDB
+    Create embeddings and store in FAISS
     
     Args:
         chunks: List of document chunks
         
     Returns:
-        Chroma vector store instance
+        FAISS vector store instance
     """
     # Initialize embeddings with Google Gemini
     embeddings = GoogleGenerativeAIEmbeddings(
@@ -104,15 +104,14 @@ def create_vector_store(chunks):
         google_api_key=os.getenv("GOOGLE_API_KEY")
     )
     
-    # Create or update ChromaDB
-    vectorstore = Chroma.from_documents(
+    # Create FAISS index from documents
+    vectorstore = FAISS.from_documents(
         documents=chunks,
-        embedding=embeddings,
-        persist_directory=CHROMA_DB_PATH
+        embedding=embeddings
     )
     
-    # Persist to disk
-    vectorstore.persist()
+    # Save to disk
+    vectorstore.save_local(FAISS_INDEX_PATH)
     
     return vectorstore
 
@@ -144,13 +143,13 @@ def main():
     chunks = split_documents(documents)
     
     # Step 3: Create embeddings and store
-    print("\n🧠 Creating embeddings and storing in ChromaDB...")
+    print("\n🧠 Creating embeddings and storing in FAISS...")
     print("⏳ This may take a moment...\n")
     
     vectorstore = create_vector_store(chunks)
     
-    print(f"\n🎉 Success! Ingested {len(chunks)} chunks into ChromaDB")
-    print(f"💾 Database stored at: {CHROMA_DB_PATH}")
+    print(f"\n🎉 Success! Ingested {len(chunks)} chunks into FAISS")
+    print(f"💾 Database stored at: {FAISS_INDEX_PATH}")
     print("\n✅ You can now run 'python app.py' to start the chat API!")
 
 

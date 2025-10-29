@@ -1,14 +1,14 @@
 """
 Document Search Tool (RAG)
-Uses ChromaDB to search through ingested documentation
+Uses FAISS to search through ingested documentation
 """
 
 import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain.vectorstores import Chroma
+from langchain_community.vectorstores import FAISS
 
 # Configuration
-CHROMA_DB_PATH = "./chroma_db"
+FAISS_INDEX_PATH = "./faiss_index"
 
 # Initialize embeddings (same as used in ingestion)
 embeddings = GoogleGenerativeAIEmbeddings(
@@ -18,12 +18,13 @@ embeddings = GoogleGenerativeAIEmbeddings(
 
 # Load the vector store
 try:
-    vectorstore = Chroma(
-        persist_directory=CHROMA_DB_PATH,
-        embedding_function=embeddings
+    vectorstore = FAISS.load_local(
+        FAISS_INDEX_PATH,
+        embeddings,
+        allow_dangerous_deserialization=True
     )
 except Exception as e:
-    print(f"⚠️  Warning: Could not load ChromaDB: {e}")
+    print(f"⚠️  Warning: Could not load FAISS index: {e}")
     print("💡 Make sure you've run 'python ingest.py' first!")
     vectorstore = None
 

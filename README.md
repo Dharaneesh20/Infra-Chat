@@ -64,7 +64,7 @@ cd backend
 python ingest.py
 ```
 
-This will process all markdown files in `backend/docs/` and store them in ChromaDB.
+This will process all markdown files in `backend/docs/` and store them in FAISS vector index.
 
 #### 4. Run the Application
 
@@ -127,7 +127,7 @@ npm start
 └───────────┼───────────────┼─────────────────┼─────────────┘
             ▼               ▼                 ▼
     ┌──────────────┐ ┌────────────┐  ┌──────────────┐
-    │  ChromaDB    │ │ AWS Boto3  │  │ Google API   │
+    │    FAISS     │ │ AWS Boto3  │  │ Google API   │
     │  (Vectors)   │ │  (EC2,S3)  │  │   (Search)   │
     └──────────────┘ └────────────┘  └──────────────┘
                          ▲
@@ -157,7 +157,7 @@ Infra-Chat/
 │   │   ├── doc_search.py     # RAG document search
 │   │   ├── cloud_search.py   # AWS API integration
 │   │   └── google_search.py  # Web search tool
-│   └── chroma_db/            # ChromaDB storage (auto-generated)
+│   └── faiss_index/          # FAISS vector index (auto-generated)
 │
 ├── frontend/                  # React frontend (TypeScript)
 │   ├── src/
@@ -183,7 +183,7 @@ Infra-Chat/
 | **Backend** | Flask (Python) | Fastest way to build AI/RAG backends |
 | **AI Framework** | LangChain | Easy orchestration of LLM + tools |
 | **LLM** | Google Gemini API | Powerful, free tier available |
-| **Vector DB** | ChromaDB | Simple, free, runs locally |
+| **Vector DB** | FAISS | Fast, efficient, runs locally (no compiler needed) |
 | **Cloud API** | AWS Boto3 | Official AWS Python SDK |
 
 ---
@@ -271,7 +271,7 @@ MIT License - feel free to use this in your portfolio!
    - Audit logging for compliance
 
 4. **Scalability:**
-   - Replace ChromaDB with Pinecone/Weaviate (cloud)
+   - Replace FAISS with Pinecone/Weaviate (cloud vector DB)
    - Add Redis caching layer
    - Kubernetes deployment
 
