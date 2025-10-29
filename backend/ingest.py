@@ -4,6 +4,10 @@ This script runs once to load all documentation into FAISS.
 It splits documents into chunks, creates embeddings, and stores them for RAG.
 """
 
+# Suppress numpy warnings on Python 3.13 + Windows
+import warnings
+warnings.filterwarnings('ignore', category=RuntimeWarning, module='numpy')
+
 import os
 from pathlib import Path
 from dotenv import load_dotenv

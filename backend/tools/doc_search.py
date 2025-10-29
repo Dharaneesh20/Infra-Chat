@@ -3,30 +3,47 @@ Document Search Tool (RAG)
 Uses FAISS to search through ingested documentation
 """
 
+# Suppress numpy warnings on Python 3.13 + Windows
+import warnings
+warnings.filterwarnings('ignore', category=RuntimeWarning, module='numpy')
+
 import os
 from langchain_google_genai import GoogleGenerativeAIEmbeddings
-from langchain_community.vectorstores import FAISS
+
+# Try to import FAISS, but have a fallback
+try:
+    from langchain_community.vectorstores import FAISS
+    FAISS_AVAILABLE = True
+except Exception as e:
+    FAISS_AVAILABLE = False
+    print(f"⚠️  Warning: FAISS not available ({e}). Document search will return placeholder responses.")
 
 # Configuration
 FAISS_INDEX_PATH = "./faiss_index"
 
 # Initialize embeddings (same as used in ingestion)
-embeddings = GoogleGenerativeAIEmbeddings(
-    model="models/embedding-001",
-    google_api_key=os.getenv("GOOGLE_API_KEY")
-)
-
-# Load the vector store
 try:
-    vectorstore = FAISS.load_local(
-        FAISS_INDEX_PATH,
-        embeddings,
-        allow_dangerous_deserialization=True
+    embeddings = GoogleGenerativeAIEmbeddings(
+        model="models/embedding-001",
+        google_api_key=os.getenv("GOOGLE_API_KEY")
     )
 except Exception as e:
-    print(f"⚠️  Warning: Could not load FAISS index: {e}")
-    print("💡 Make sure you've run 'python ingest.py' first!")
-    vectorstore = None
+    embeddings = None
+    print(f"⚠️  Warning: Could not initialize embeddings ({e})")
+
+# Load the vector store
+vectorstore = None
+if FAISS_AVAILABLE and embeddings:
+    try:
+        vectorstore = FAISS.load_local(
+            FAISS_INDEX_PATH,
+            embeddings,
+            allow_dangerous_deserialization=True
+        )
+    except Exception as e:
+        print(f"⚠️  Warning: Could not load FAISS index: {e}")
+        print("💡 Make sure you've run 'python ingest.py' first!")
+        vectorstore = None
 
 
 def search_documentation(query: str) -> str:
