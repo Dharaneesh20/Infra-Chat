@@ -1,0 +1,21 @@
+# Core Framework
+Flask==3.0.0
+Flask-CORS==4.0.0
+
+# AI & LangChain
+langchain==0.1.0
+langchain-google-genai==0.0.5
+google-generativeai==0.3.2
+
+# Vector Database
+chromadb==0.4.22
+
+# Cloud Integration
+boto3==1.34.25
+
+# Utilities
+python-dotenv==1.0.0
+requests==2.31.0
+
+# Text Processing
+tiktoken==0.5.2
