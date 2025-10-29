@@ -1,0 +1,622 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Infra-Chat - AI-powered Cloud Infrastructure Management Platform with RAG capabilities">
+    <meta name="keywords" content="AI, Cloud Infrastructure, ChatBot, RAG, React, Flask, Python">
+    <meta name="author" content="Infra-Chat Team">
+    <title>Infra-Chat - AI Cloud Infrastructure Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+                        <path d="M20 9V7c0-1.1-.9-2-2-2h-3c0-1.66-1.34-3-3-3S9 3.34 9 5H6c-1.1 0-2 .9-2 2v2c-1.66 0-3 1.34-3 3s1.34 3 3 3v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4c1.66 0 3-1.34 3-3s-1.34-3-3-3z" fill="url(#logo-gradient)"/>
+                        <defs>
+                            <linearGradient id="logo-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#6366f1"/>
+                                <stop offset="100%" style="stop-color:#8b5cf6"/>
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                    <span>Infra-Chat</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features">Features</a>
+                    <a href="#installation">Installation</a>
+                    <a href="#techstack">Tech Stack</a>
+                    <a href="#contribute">Contribute</a>
+                    <a href="https://github.com/yourusername/infra-chat" target="_blank" class="github-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        GitHub
+                    </a>
+                </div>
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-background">
+            <div class="gradient-orb orb-1"></div>
+            <div class="gradient-orb orb-2"></div>
+            <div class="gradient-orb orb-3"></div>
+        </div>
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="pulse-dot"></span>
+                    AI-Powered Infrastructure Management
+                </div>
+                <h1 class="hero-title">
+                    Manage Your Cloud<br>
+                    <span class="gradient-text">Infrastructure with AI</span>
+                </h1>
+                <p class="hero-description">
+                    Infra-Chat is an intelligent chatbot that helps you manage, query, and understand your cloud infrastructure using natural language and RAG technology.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#installation" class="btn btn-primary">
+                        Get Started
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        Learn More
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Open Source</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">AI</div>
+                        <div class="stat-label">Powered</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">RAG</div>
+                        <div class="stat-label">Technology</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">
+                    <div class="card-icon">💬</div>
+                    <div class="card-text">Natural Language Queries</div>
+                </div>
+                <div class="floating-card card-2">
+                    <div class="card-icon">🚀</div>
+                    <div class="card-text">Deploy Faster</div>
+                </div>
+                <div class="floating-card card-3">
+                    <div class="card-icon">🔍</div>
+                    <div class="card-text">Smart Document Search</div>
+                </div>
+                <div class="mockup-container">
+                    <div class="browser-mockup">
+                        <div class="browser-header">
+                            <div class="browser-dots">
+                                <span></span>
+                                <span></span>
+                                <span></span>
+                            </div>
+                            <div class="browser-address">localhost:3000</div>
+                        </div>
+                        <div class="browser-content">
+                            <div class="chat-preview">
+                                <div class="message-preview bot">How can I help with your infrastructure?</div>
+                                <div class="message-preview user">List my EC2 instances</div>
+                                <div class="typing-preview">
+                                    <span></span><span></span><span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Powerful Features</h2>
+                <p class="section-description">Everything you need to manage your cloud infrastructure efficiently</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
+                            <line x1="12" y1="22.08" x2="12" y2="12"/>
+                        </svg>
+                    </div>
+                    <h3>RAG Technology</h3>
+                    <p>Retrieval-Augmented Generation for accurate, context-aware responses using your documentation</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <circle cx="8.5" cy="8.5" r="1.5"/>
+                            <polyline points="21 15 16 10 5 21"/>
+                        </svg>
+                    </div>
+                    <h3>Natural Language Interface</h3>
+                    <p>Ask questions in plain English - no complex commands or syntax required</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                            <polyline points="14 2 14 8 20 8"/>
+                            <line x1="16" y1="13" x2="8" y2="13"/>
+                            <line x1="16" y1="17" x2="8" y2="17"/>
+                            <polyline points="10 9 9 9 8 9"/>
+                        </svg>
+                    </div>
+                    <h3>Document Search</h3>
+                    <p>Intelligent search through your infrastructure documentation with semantic understanding</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <polyline points="12 6 12 12 16 14"/>
+                        </svg>
+                    </div>
+                    <h3>Real-time Responses</h3>
+                    <p>Get instant answers to your infrastructure queries with typing indicators</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </div>
+                    <h3>Secure & Private</h3>
+                    <p>Your infrastructure data stays local - full control over your information</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polyline points="16 18 22 12 16 6"/>
+                            <polyline points="8 6 2 12 8 18"/>
+                        </svg>
+                    </div>
+                    <h3>Easy Integration</h3>
+                    <p>Simple API integration with your existing cloud infrastructure tools</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Installation Section -->
+    <section id="installation" class="installation">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Quick Installation</h2>
+                <p class="section-description">Get started in minutes with our simple setup process</p>
+            </div>
+            <div class="installation-content">
+                <div class="installation-steps">
+                    <div class="step">
+                        <div class="step-number">1</div>
+                        <div class="step-content">
+                            <h3>Clone Repository</h3>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                    </svg>
+                                </button>
+                                <pre><code>git clone https://github.com/yourusername/infra-chat.git
+cd infra-chat</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">2</div>
+                        <div class="step-content">
+                            <h3>Install Backend Dependencies</h3>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                    </svg>
+                                </button>
+                                <pre><code>cd backend
+pip install -r requirements.txt
+python ingest_minimal.py</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">3</div>
+                        <div class="step-content">
+                            <h3>Install Frontend Dependencies</h3>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                    </svg>
+                                </button>
+                                <pre><code>cd ../frontend
+npm install</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">4</div>
+                        <div class="step-content">
+                            <h3>Start Application</h3>
+                            <div class="code-block">
+                                <button class="copy-btn" onclick="copyCode(this)">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="9" y="9" width="13" height="13" rx="2" ry="2"/>
+                                        <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>
+                                    </svg>
+                                </button>
+                                <pre><code># Terminal 1 - Backend
+python app_minimal.py
+
+# Terminal 2 - Frontend
+npm run dev</code></pre>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="installation-info">
+                    <div class="info-card">
+                        <h4>📋 Requirements</h4>
+                        <ul>
+                            <li>Python 3.11+ (3.13 supported with minimal mode)</li>
+                            <li>Node.js 18+ & npm</li>
+                            <li>Git</li>
+                            <li>Modern web browser</li>
+                        </ul>
+                    </div>
+                    <div class="info-card">
+                        <h4>🚀 Quick Start</h4>
+                        <p>Use our automated scripts for faster setup:</p>
+                        <div class="code-block small">
+                            <pre><code># Windows
+.\start.ps1
+
+# Test installation
+.\test.ps1</code></pre>
+                        </div>
+                    </div>
+                    <div class="info-card">
+                        <h4>📚 Documentation</h4>
+                        <p>Check out our comprehensive guides:</p>
+                        <ul>
+                            <li><a href="README.md">README.md</a></li>
+                            <li><a href="QUICKSTART.md">Quick Start Guide</a></li>
+                            <li><a href="PYTHON313_NOTES.md">Python 3.13 Notes</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="techstack" class="techstack">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Modern Tech Stack</h2>
+                <p class="section-description">Built with cutting-edge technologies for optimal performance</p>
+            </div>
+            <div class="tech-grid">
+                <div class="tech-category">
+                    <h3>Frontend</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <div class="tech-logo">⚛️</div>
+                            <span>React 18</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-logo">📘</div>
+                            <span>TypeScript</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-logo">⚡</div>
+                            <span>Vite</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-logo">🎨</div>
+                            <span>CSS3 Animations</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3>Backend</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <div class="tech-logo">🐍</div>
+                            <span>Python 3.13</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-logo">🌶️</div>
+                            <span>Flask 3.0</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-logo">🔍</div>
+                            <span>FAISS</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-logo">📚</div>
+                            <span>LangChain</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="tech-category">
+                    <h3>AI & ML</h3>
+                    <div class="tech-items">
+                        <div class="tech-item">
+                            <div class="tech-logo">🤖</div>
+                            <span>Google Gemini</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-logo">🧠</div>
+                            <span>RAG Pipeline</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-logo">📊</div>
+                            <span>Vector Embeddings</span>
+                        </div>
+                        <div class="tech-item">
+                            <div class="tech-logo">💾</div>
+                            <span>Semantic Search</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Future Improvements Section -->
+    <section class="roadmap">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Future Roadmap</h2>
+                <p class="section-description">Exciting features coming soon</p>
+            </div>
+            <div class="roadmap-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Multi-Cloud Support</h3>
+                        <p>AWS, Azure, and GCP integration for unified infrastructure management</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Advanced Analytics</h3>
+                        <p>Cost optimization insights and usage analytics dashboards</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Voice Commands</h3>
+                        <p>Hands-free infrastructure management with voice recognition</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Team Collaboration</h3>
+                        <p>Multi-user support with role-based access control</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <h3>Infrastructure as Code</h3>
+                        <p>Generate Terraform/CloudFormation templates from conversations</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contribute Section -->
+    <section id="contribute" class="contribute">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Contribute to Infra-Chat</h2>
+                <p class="section-description">Join our community and help make infrastructure management better</p>
+            </div>
+            <div class="contribute-grid">
+                <div class="contribute-card">
+                    <div class="contribute-icon">🐛</div>
+                    <h3>Report Bugs</h3>
+                    <p>Found an issue? Let us know on GitHub Issues</p>
+                    <a href="https://github.com/yourusername/infra-chat/issues" class="contribute-link">Report Issue →</a>
+                </div>
+                <div class="contribute-card">
+                    <div class="contribute-icon">💡</div>
+                    <h3>Suggest Features</h3>
+                    <p>Have an idea? Share it with the community</p>
+                    <a href="https://github.com/yourusername/infra-chat/discussions" class="contribute-link">Start Discussion →</a>
+                </div>
+                <div class="contribute-card">
+                    <div class="contribute-icon">🔧</div>
+                    <h3>Submit PRs</h3>
+                    <p>Contribute code and make the project better</p>
+                    <a href="https://github.com/yourusername/infra-chat/pulls" class="contribute-link">View PRs →</a>
+                </div>
+                <div class="contribute-card">
+                    <div class="contribute-icon">📖</div>
+                    <h3>Improve Docs</h3>
+                    <p>Help others by enhancing documentation</p>
+                    <a href="https://github.com/yourusername/infra-chat/tree/master/docs" class="contribute-link">Edit Docs →</a>
+                </div>
+            </div>
+            
+            <div class="contribute-rules">
+                <h3>Contribution Guidelines</h3>
+                <div class="rules-grid">
+                    <div class="rule-item">
+                        <div class="rule-number">1</div>
+                        <div class="rule-content">
+                            <h4>Fork & Clone</h4>
+                            <p>Fork the repository and create your feature branch</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-number">2</div>
+                        <div class="rule-content">
+                            <h4>Code Quality</h4>
+                            <p>Follow existing code style and add tests for new features</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-number">3</div>
+                        <div class="rule-content">
+                            <h4>Commit Messages</h4>
+                            <p>Use semantic commit messages (feat:, fix:, docs:, etc.)</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-number">4</div>
+                        <div class="rule-content">
+                            <h4>Pull Request</h4>
+                            <p>Submit PR with clear description and reference issues</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-number">5</div>
+                        <div class="rule-content">
+                            <h4>Code Review</h4>
+                            <p>Be responsive to feedback and make requested changes</p>
+                        </div>
+                    </div>
+                    <div class="rule-item">
+                        <div class="rule-number">6</div>
+                        <div class="rule-content">
+                            <h4>Be Respectful</h4>
+                            <p>Follow our Code of Conduct and be kind to others</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to Transform Your Infrastructure Management?</h2>
+                <p>Join developers already using Infra-Chat to simplify their cloud operations</p>
+                <div class="cta-buttons">
+                    <a href="https://github.com/yourusername/infra-chat" class="btn btn-primary large">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+                        </svg>
+                        Star on GitHub
+                    </a>
+                    <a href="#installation" class="btn btn-secondary large">Get Started</a>
+                </div>
+                <div class="github-stats">
+                    <div class="stat">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12 .587l3.668 7.571L24 9.423l-6 5.847 1.417 8.143L12 18.902l-7.417 4.511L6 15.27 0 9.423l8.332-1.265z"/>
+                        </svg>
+                        Star this repo if you find it useful!
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <div class="footer-logo">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                            <path d="M20 9V7c0-1.1-.9-2-2-2h-3c0-1.66-1.34-3-3-3S9 3.34 9 5H6c-1.1 0-2 .9-2 2v2c-1.66 0-3 1.34-3 3s1.34 3 3 3v4c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-4c1.66 0 3-1.34 3-3s-1.34-3-3-3z" fill="url(#footer-gradient)"/>
+                            <defs>
+                                <linearGradient id="footer-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#6366f1"/>
+                                    <stop offset="100%" style="stop-color:#8b5cf6"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                        <span>Infra-Chat</span>
+                    </div>
+                    <p>AI-powered cloud infrastructure management made simple</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#installation">Installation</a></li>
+                        <li><a href="#techstack">Tech Stack</a></li>
+                        <li><a href="README.md">Documentation</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Community</h4>
+                    <ul>
+                        <li><a href="https://github.com/yourusername/infra-chat">GitHub</a></li>
+                        <li><a href="https://github.com/yourusername/infra-chat/issues">Issues</a></li>
+                        <li><a href="https://github.com/yourusername/infra-chat/discussions">Discussions</a></li>
+                        <li><a href="#contribute">Contribute</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Resources</h4>
+                    <ul>
+                        <li><a href="QUICKSTART.md">Quick Start</a></li>
+                        <li><a href="PYTHON313_NOTES.md">Python 3.13 Guide</a></li>
+                        <li><a href="CSS_TROUBLESHOOTING.md">Troubleshooting</a></li>
+                        <li><a href="LICENSE">License</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Infra-Chat. Open source under MIT License.</p>
+                <p>Made with ❤️ by the community</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTopBtn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M18 15l-6-6-6 6"/>
+        </svg>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+</html>
