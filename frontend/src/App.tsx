@@ -7,8 +7,8 @@ function App() {
     <div className="app">
       <header className="app-header">
         <div className="header-content">
-          <h1>🤖 Infra-Chat</h1>
-          <p className="subtitle">Your AI Cloud Infrastructure Assistant</p>
+          <h1>Infra-Chat</h1>
+          <p className="subtitle">Cloud Infrastructure Management Platform</p>
         </div>
       </header>
       

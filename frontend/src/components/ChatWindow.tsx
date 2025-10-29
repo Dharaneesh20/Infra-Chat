@@ -9,7 +9,7 @@ const ChatWindow: React.FC = () => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "👋 Hi! I'm Infra-Chat, your AI assistant for cloud infrastructure and documentation. I can help you with:\n\n• 📚 Searching team documentation\n• ☁️ Querying live AWS resources\n• 🔍 General cloud knowledge\n\nTry asking me something like:\n- \"List my EC2 instances\"\n- \"Show me the deployment guide\"\n- \"What are the troubleshooting steps?\"",
+      text: "Welcome to Infra-Chat. I'm your intelligent assistant for cloud infrastructure management and technical documentation.\n\nI can help you with:\n\n• Technical documentation search\n• AWS resource queries\n• Cloud infrastructure guidance\n\nExample queries:\n- \"List EC2 instances\"\n- \"Show deployment documentation\"\n- \"Troubleshooting procedures\"",
       sender: 'bot',
       timestamp: new Date(),
     },
@@ -26,7 +26,7 @@ const ChatWindow: React.FC = () => {
       
       if (!healthy) {
         addBotMessage(
-          "⚠️ Warning: I can't connect to the backend API. Please make sure the Flask server is running on http://localhost:5000"
+          "Warning: Unable to connect to backend API. Please ensure the Flask server is running on http://localhost:5000"
         );
       }
     };
@@ -79,13 +79,13 @@ const ChatWindow: React.FC = () => {
         addBotMessage(response.response);
       } else {
         addBotMessage(
-          `❌ Sorry, I encountered an error: ${response.error || 'Unknown error'}`
+          `Error: ${response.error || 'Request failed. Please try again.'}`
         );
       }
     } catch (error) {
       setIsTyping(false);
       addBotMessage(
-        '❌ Sorry, something went wrong. Please make sure the backend is running.'
+        'Connection error. Please verify the backend service is running.'
       );
     }
   };
@@ -94,7 +94,7 @@ const ChatWindow: React.FC = () => {
     <div className="chat-window">
       {isBackendHealthy === false && (
         <div className="backend-warning">
-          ⚠️ Backend not connected. Start the Flask server: <code>python app.py</code>
+          <strong>Backend Disconnected</strong> - Start the Flask server: <code>python app.py</code>
         </div>
       )}
       

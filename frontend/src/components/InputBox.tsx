@@ -73,7 +73,7 @@ const InputBox: React.FC<InputBoxProps> = ({ onSendMessage, disabled = false }) 
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={handleKeyDown}
-          placeholder="Ask me about your infrastructure or documentation..."
+          placeholder="Enter your infrastructure query or documentation request..."
           className="input-textarea"
           disabled={disabled}
           rows={1}
