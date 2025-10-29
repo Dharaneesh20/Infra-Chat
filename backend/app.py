@@ -4,6 +4,10 @@ A Flask application that provides an AI-powered chat interface with access to
 documentation and cloud infrastructure.
 """
 
+# Suppress numpy warnings on Python 3.13 + Windows
+import warnings
+warnings.filterwarnings('ignore', category=RuntimeWarning, module='numpy')
+
 from flask import Flask, request, jsonify
 from flask_cors import CORS
 from dotenv import load_dotenv
