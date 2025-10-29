@@ -1,0 +1,24 @@
+.chat-window {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+}
+
+.backend-warning {
+  background: #fef3c7;
+  border-bottom: 2px solid #f59e0b;
+  padding: 12px 20px;
+  font-size: 0.9rem;
+  color: #92400e;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.backend-warning code {
+  background: rgba(0, 0, 0, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
