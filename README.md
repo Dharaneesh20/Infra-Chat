@@ -290,4 +290,8 @@ This project showcases:
 
 ---
 
+## 📧 Contact
 
+Questions? Open an issue or reach out!
+
+**Happy Hacking!** 🎉
