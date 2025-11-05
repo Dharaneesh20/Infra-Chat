@@ -294,4 +294,4 @@ This project showcases:
 
 Questions? Open an issue or reach out!
 
-
+**Happy Hacking!** 🎉
